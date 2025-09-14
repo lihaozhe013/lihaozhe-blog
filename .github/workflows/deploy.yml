@@ -24,22 +24,31 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # 如果主题/模块通过 submodule 引入，递归拉取
-          submodules: recursive
+          submodules: true       # 如果主题以 submodule 引入，递归拉取
           fetch-depth: 0
 
-      - name: Setup Hugo (extended)
-        uses: actions/setup-hugo@v3
+      # 如果使用 Hugo Modules（hugo-blog-awesome 常见），需要 Go
+      - name: Setup Go (for Hugo Modules)
+        uses: actions/setup-go@v5
         with:
-          hugo-version: latest
+          go-version: "1.22.x"
+
+      - name: Setup Hugo (extended)
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "latest"
           extended: true
 
-      # 配置 Pages，以便获取正确的 base_url（项目页尤为重要）
+      # 配置 Pages，提供正确的 base_url（项目页尤为重要）
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
         with:
           static_site_generator: hugo
+
+      # 可选：预取/固化模块依赖，减少网络波动（需要 Go）
+      # - name: Vendor Hugo modules
+      #   run: hugo mod vendor
 
       - name: Build with Hugo
         env:
@@ -54,7 +63,6 @@ jobs:
           path: ./public
 
   deploy:
-    # 在 PR 上仅构建不部署
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     needs: build
