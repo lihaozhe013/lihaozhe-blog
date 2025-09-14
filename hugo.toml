@@ -1,17 +1,10 @@
-# 网站全局标题
-title = "Haozhe Li's Blog"
-# 最终部署的网址，本地测试时可以保留，部署前务必修改
-baseURL = 'https://your-domain.com/'
-# 网站语言代码
+title = "Haozhe Li's Website"
+baseURL = 'https://lihaozhe013.github.io/lihaozhe-website/'
 languageCode = 'en-us'
-# 主题名称
 theme = "hugo-blog-awesome"
-
-# 启用 emoji
 enableEmoji = true
 ignoreErrors = ["additional-script-loading-error"]
 
-# --- 服务配置 ---
 [services]
   # 谷歌分析，留空为禁用
   [services.googleAnalytics]
@@ -53,13 +46,14 @@ ignoreErrors = ["additional-script-loading-error"]
 
 # --- 全局参数 (替代了原来的 [Languages.en-gb.params]) ---
 [params]
-  sitename = "Haozhe Li's Blog"
-  description = "A personal site and blog by Haozhe Li."
-  defaultColor = "dark" # 颜色模式: dark, light, auto
+  sitename = "Haozhe's Website"
+  description = "Haozhe's Personal Website"
+  defaultColor = "auto" # 颜色模式: dark, light, auto
   mainSections = ['posts']
   toc = true # 全局启用目录
-  tocOpen = false # 目录默认不展开
+  tocOpen = false # 目录默认展开
   goToTop = true # 启用“返回顶部”按钮
+  math = true # 全站启用 KaTeX (可在页面 Front Matter 中用 math: false 覆盖)
   
   # 自定义脚本
   # additionalScripts = ['js/custom.js']
@@ -72,9 +66,9 @@ ignoreErrors = ["additional-script-loading-error"]
   # 作者信息
   [params.author]
     avatar = "avatar.jpg" # 图片放在 assets/ 目录下
-    intro = "Haozhe Li's Blog"
+    intro = "Haozhe Li's Website"
     name = "Haozhe Li"
-    description = "Welcome to my personal blog where I write about my projects and other interests."
+    description = "Welcome to my personal website where I write about my portfolio."
 
   # 社交链接图标
   [[params.socialIcons]]
@@ -83,12 +77,12 @@ ignoreErrors = ["additional-script-loading-error"]
   # 你可以继续添加更多社交链接
   [[params.socialIcons]]
     name = "linkedin"
-    url = "https://linkedin.com/in/haozhe-li-5553232b0"
+    url = "https://linkedin.com/in/lihaozhe013"
 
   # PWA / 移动浏览器配置
   [params.webmanifest]
-    name = "Haozhe Li's Blog"
-    short_name = "Haozhe's Blog"
+    name = "Haozhe Li's Website"
+    short_name = "Haozhe's Website"
     start_url = "/"
     theme_color = "#434648"
     background_color = "#fff"

@@ -5,8 +5,18 @@ title = 'About Me'
 +++
 
 # About Me
+Hello! I'm Haozhe (李 昊喆), a third-year computer engineering student at University of Toronto.
 
-Hello! I'm Haozhe, a third-year computer engineering student at University of Toronto.
+## My Interests
+- Movies
+- Badminton
+- Gaming
+- Drone Racing
+- Music
+
+## Language
+- Chinese (Native)
+- English (Proficient)
 
 ## Tech Stack
 ### Software Development
@@ -23,6 +33,12 @@ Hello! I'm Haozhe, a third-year computer engineering student at University of To
 
 #### Backend
 - Node.js
-- Electron Framework
+- C#
 - Go
 - C/C++
+
+
+### DevOps & Cloud
+- AWS
+- Nginx
+- Alibaba Cloud
