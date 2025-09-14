@@ -1,5 +1,5 @@
 +++
-date = '2024-04-2T22:03:53-04:00'
+date = '2024-04-02T22:03:53-04:00'
 draft = false
 title = 'ECE297 Course Project - GIS'
 +++
