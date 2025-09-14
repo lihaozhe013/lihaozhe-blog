@@ -1,10 +1,10 @@
 +++
-date = '2025-09-13T22:03:53-04:00'
+date = '2024-04-2T22:03:53-04:00'
 draft = false
 title = 'ECE297 Course Project - GIS'
 +++
 
-This is one of my second year course project.
+This is one of my second year course project. The name of this GIS software is **Delivery Duo**, which means a good helper of delivery drivers.
 
 ## Tech Stack
 
