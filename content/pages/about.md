@@ -8,6 +8,16 @@ title = 'About Me'
 
 Hello! I'm Haozhe, a third-year computer engineering student at University of Toronto.
 
+## My Interests
+Movies
+Badminton
+Gaming (Dota 2, LoL)
+Music
+
+## Language
+Chinese (Native)
+English (Proficient)
+
 ## Tech Stack
 ### Software Development
 - C/C++
