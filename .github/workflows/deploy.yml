@@ -21,14 +21,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (with submodules)
         uses: actions/checkout@v4
         with:
-          submodules: true       # 如果主题以 submodule 引入，递归拉取
+          submodules: recursive
           fetch-depth: 0
+          # 如果你的主题子模块是私有库且需要 PAT，请取消下一行注释并把 GH_PAT 存成仓库密钥
+          # token: ${{ secrets.GH_PAT }}
 
-      # 如果使用 Hugo Modules（hugo-blog-awesome 常见），需要 Go
+      # 仅在存在 go.mod（Hugo Modules）时安装 Go
+      - name: Detect Hugo Modules (go.mod)
+        id: detect_mod
+        run: |
+          if [ -f go.mod ]; then
+            echo "has_mod=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_mod=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Setup Go (for Hugo Modules)
+        if: steps.detect_mod.outputs.has_mod == 'true'
         uses: actions/setup-go@v5
         with:
           go-version: "1.22.x"
@@ -39,23 +51,31 @@ jobs:
           hugo-version: "latest"
           extended: true
 
-      # 配置 Pages，提供正确的 base_url（项目页尤为重要）
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: hugo
-
-      # 可选：预取/固化模块依赖，减少网络波动（需要 Go）
-      # - name: Vendor Hugo modules
-      #   run: hugo mod vendor
+      # 计算 baseURL：优先使用 static/CNAME，其次判断是否为用户主页仓库
+      - name: Compute baseURL
+        id: baseurl
+        shell: bash
+        run: |
+          REPO="${GITHUB_REPOSITORY#*/}"
+          OWNER="${{ github.repository_owner }}"
+          BASE_URL=""
+          if [ -f ./static/CNAME ]; then
+            DOMAIN="$(tr -d '\n\r ' < ./static/CNAME)"
+            BASE_URL="https://${DOMAIN}/"
+          elif [ "$REPO" = "${OWNER}.github.io" ]; then
+            BASE_URL="https://${OWNER}.github.io/"
+          else
+            BASE_URL="https://${OWNER}.github.io/${REPO}/"
+          fi
+          echo "base_url=${BASE_URL}" >> "$GITHUB_OUTPUT"
+          echo "Using baseURL: ${BASE_URL}"
 
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
-          hugo --gc --minify --enableGitInfo --baseURL "${{ steps.pages.outputs.base_url }}"
+          hugo --gc --minify --enableGitInfo --baseURL "${{ steps.baseurl.outputs.base_url }}"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
