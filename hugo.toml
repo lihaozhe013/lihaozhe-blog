@@ -83,7 +83,7 @@ ignoreErrors = ["additional-script-loading-error"]
   # 你可以继续添加更多社交链接
   [[params.socialIcons]]
     name = "linkedin"
-    url = "https://linkedin.com/in/haozhe-li-5553232b0"
+    url = "https://linkedin.com/in/lihaozhe013"
 
   # PWA / 移动浏览器配置
   [params.webmanifest]
