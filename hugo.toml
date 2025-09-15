@@ -1,7 +1,7 @@
 # 网站全局标题
 title = "Haozhe Li's Blog"
 # 最终部署的网址，本地测试时可以保留，部署前务必修改
-baseURL = 'https://your-domain.com/'
+baseURL = 'https://lihaozhe013.github.io/lihaozhe-blog/'
 # 网站语言代码
 languageCode = 'en-us'
 # 主题名称
@@ -53,8 +53,8 @@ ignoreErrors = ["additional-script-loading-error"]
 
 # --- 全局参数 (替代了原来的 [Languages.en-gb.params]) ---
 [params]
-  sitename = "Haozhe Li's Blog"
-  description = "A personal site and blog by Haozhe Li."
+  sitename = "Haozhe Li's Portfolio"
+  description = "A personal site and portfolio by Haozhe Li."
   defaultColor = "dark" # 颜色模式: dark, light, auto
   mainSections = ['posts']
   toc = true # 全局启用目录
@@ -72,7 +72,7 @@ ignoreErrors = ["additional-script-loading-error"]
   # 作者信息
   [params.author]
     avatar = "avatar.jpg" # 图片放在 assets/ 目录下
-    intro = "Haozhe Li's Blog"
+    intro = "Haozhe Li's Portfolio"
     name = "Haozhe Li"
     description = "Welcome to my personal blog where I write about my projects and other interests."
 
@@ -87,8 +87,8 @@ ignoreErrors = ["additional-script-loading-error"]
 
   # PWA / 移动浏览器配置
   [params.webmanifest]
-    name = "Haozhe Li's Blog"
-    short_name = "Haozhe's Blog"
+    name = "Haozhe Li's Portfolio"
+    short_name = "Haozhe's Portfolio"
     start_url = "/"
     theme_color = "#434648"
     background_color = "#fff"
