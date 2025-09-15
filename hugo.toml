@@ -74,7 +74,7 @@ ignoreErrors = ["additional-script-loading-error"]
     avatar = "avatar.jpg" # 图片放在 assets/ 目录下
     intro = "Haozhe Li's Portfolio"
     name = "Haozhe Li"
-    description = "Welcome to my personal blog where I write about my projects and other interests."
+    description = "Welcome to my personal website where I write about my portfolio."
 
   # 社交链接图标
   [[params.socialIcons]]
