@@ -6,6 +6,9 @@ title = 'ECE297 Course Project - GIS'
 
 This is one of my second year course project. The name of this GIS software is **Delivery Duo**, which means a good helper of delivery drivers.
 
+## Presentation Slides
+[ECE297-OP2](/lihaozhe-portfolio/documents/ECE297-OP2.pdf)
+
 ## Tech Stack
 
 - C++
@@ -13,11 +16,6 @@ This is one of my second year course project. The name of this GIS software is *
  
 The program is developed on Debian 11 + Mate Desktop Environment
 
-
-
-Hi! This is **Delivery Duo**, the best helper for delivery drivers!
-
-You can click on the outline below to quickly jump to the Chapter you are looking for.
 
 # User Manual
 
