@@ -11,15 +11,15 @@ Hello! I'm Haozhe (李 昊喆), a third-year computer engineering student at Uni
 
 
 ## My Interests
-Movies
-Badminton
-Gaming
-Drone Racing
-Music
+- Movies
+- Badminton
+- Gaming
+- Drone Racing
+- Music
 
 ## Language
-Chinese (Native)
-English (Proficient)
+- hinese (Native)
+- English (Proficient)
 
 ## Tech Stack
 ### Software Development
