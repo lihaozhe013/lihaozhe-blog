@@ -1,0 +1,136 @@
+/* 自定义主页样式 */
+.website-intro {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.welcome-content {
+    margin-bottom: 3rem;
+}
+
+.welcome-content h2 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.welcome-content p {
+    color: var(--text-color-secondary);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.portfolio-section {
+    margin-top: 3rem;
+}
+
+.portfolio-description {
+    color: var(--text-color-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.portfolio-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.portfolio-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.portfolio-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.portfolio-btn:hover::before {
+    left: 100%;
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+    animation: pulse 2s infinite;
+}
+
+.btn-text {
+    font-weight: 600;
+}
+
+.btn-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-btn:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .website-intro {
+        padding: 1rem;
+    }
+    
+    .welcome-content h2 {
+        font-size: 2rem;
+    }
+    
+    .welcome-content p {
+        font-size: 1.1rem;
+    }
+    
+    .portfolio-btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* 深色模式兼容 */
+[data-theme="dark"] .portfolio-btn {
+    background: linear-gradient(135deg, #4c63d2 0%, #5a4794 100%);
+    box-shadow: 0 4px 15px rgba(76, 99, 210, 0.4);
+}
+
+[data-theme="dark"] .portfolio-btn:hover {
+    box-shadow: 0 8px 25px rgba(76, 99, 210, 0.6);
+}

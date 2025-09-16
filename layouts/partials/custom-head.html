@@ -1,0 +1,6 @@
+{{/* 自定义 CSS 样式 */}}
+{{- $customCSS := resources.Get "css/custom.css" }}
+{{- if $customCSS }}
+{{- $customCSSProcessed := $customCSS | minify | fingerprint }}
+<link href="{{ $customCSSProcessed.RelPermalink }}" rel="stylesheet">
+{{- end }}
