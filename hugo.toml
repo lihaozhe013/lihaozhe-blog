@@ -60,6 +60,7 @@ ignoreErrors = ["additional-script-loading-error"]
   toc = true # 全局启用目录
   tocOpen = false # 目录默认不展开
   goToTop = true # 启用“返回顶部”按钮
+  math = true # 全站启用 KaTeX (可在页面 Front Matter 中用 math: false 覆盖)
   
   # 自定义脚本
   # additionalScripts = ['js/custom.js']
