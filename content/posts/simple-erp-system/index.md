@@ -1,10 +1,10 @@
 +++
 date = '2025-09-13T22:03:53-04:00'
 draft = false
-title = 'Simple ERP System'
+title = 'Personal Open Source Project: Simple ERP System'
 +++
 
-# SIMPLE ERP SYSTEM
+# Personal Open Source Project: SIMPLE ERP SYSTEM
 
 ## [GitHub](https://github.com/lihaozhe013/myf-lightweight-ERP-system)
 ## [Demo (Click Me)](https://haozheliexampleproject.xyz)
@@ -47,14 +47,14 @@ Can be enabled in appConfig.json
 ## Tech Stack
 
 **Backend**
->
+
 - Node.js
 - SQLite
 
 <br>
 
 **Frontend**
->
+
 - Vite
 - React
 - React Router 
@@ -63,11 +63,13 @@ Can be enabled in appConfig.json
 
 <br>
 
-**Prod**
->
+**Deployment Status**
+- AlmaLinux
 - Ubuntu LTS
 - Nginx
 - PM2
+
+Successfully deployed on AWS Ubuntu LTS and AlmaLinux, using PM2 for concurrent requests handling, and Nginx as a reverse proxy server.
 
 <br>
 
