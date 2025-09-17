@@ -221,12 +221,6 @@ $$
 
 ### Hilbert Transform
 
-General Form from Google is
-$$
-H[f](x) = \frac{1}{\pi} \text{PV} \int_{-\infty}^{\infty} \frac{f(y)}{x-y} \, dy
-$$
-
-
 <img src="./assets/image-20250917090740345.png" alt="image-20250917090740345" style="zoom:50%;" />
 
 Hilbert transform of $x(t)$ is
