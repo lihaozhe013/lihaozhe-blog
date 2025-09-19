@@ -1,7 +1,7 @@
 +++
 date = '2024-04-03T22:03:53-04:00'
 draft = false
-title = 'ECE243 Course Project - Runner Game'
+title = 'Runner Game - ECE243 Course Project'
 +++
 # ECE243 Course Project - Runner Game
 
