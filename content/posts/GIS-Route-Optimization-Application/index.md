@@ -1,7 +1,7 @@
 +++
 date = '2024-04-02T22:03:53-04:00'
 draft = false
-title = 'ECE297 Course Project - GIS'
+title = 'GIS Route Optimization Application - ECE297 Course Project'
 +++
 
 This is one of my second year course project. The name of this GIS software is **Delivery Duo**, which means a good helper of delivery drivers.
@@ -16,12 +16,13 @@ This is one of my second year course project. The name of this GIS software is *
  
 The program is developed on Debian 11 + Mate Desktop Environment
 
+## Technical Features
+- Support raw data, the app can process raw geographic data to create a dynamic map
+- Supports multithreading to maximize utilization of machine resources for calculating shortest paths, multiple stops, and coordinate transformations.
+- Utilized TomTom API to display real time traffic.
+- **A* Algorithm** was implemented for finding the shortest path, while **Dijkstra Algorithm**, **Multi-Start Greedy Method** and **Simulated Annealing** was implemented to find the multi-stop route planning.
 
-# User Manual
-
-> Below is the user manusal of this project.
-
-<br>
+# User Manual (User Side Features)
 
 ## Introduction
 
