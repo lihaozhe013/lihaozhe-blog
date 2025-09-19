@@ -7,7 +7,7 @@ title = 'ECE297 Course Project - GIS'
 This is one of my second year course project. The name of this GIS software is **Delivery Duo**, which means a good helper of delivery drivers.
 
 ## Presentation Slides
-[ECE297-OP2](/lihaozhe-portfolio/documents/ECE297-OP2.pdf)
+[ECE297-OP2](/lihaozhe-website/portfolio/ECE297-OP2.pdf)
 
 ## Tech Stack
 

@@ -2,7 +2,7 @@
 
 ### Clone
 ```
-git clone --recurse-submodules https://github.com/lihaozhe013/lihaozhe-portfolio.git
+git clone --recurse-submodules https://github.com/lihaozhe013/lihaozhe-website.git
 ```
 
 ### If you didn't clone submodules, run

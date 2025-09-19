@@ -7,7 +7,7 @@ title = 'ECE316 Formula'
 
 # ECE316 Formula
 
-[See PDF Version](/lihaozhe-portfolio/documents/ECE316-Formula.pdf)
+[See PDF Version](/lihaozhe-website/blog/ECE316-Formula.pdf)
 
 ### Euler Indentities
 

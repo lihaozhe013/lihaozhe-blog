@@ -1,7 +1,7 @@
 # 网站全局标题
 title = "Haozhe Li's Website"
 # 最终部署的网址，本地测试时可以保留，必修改
-baseURL = 'https://lihaozhe013.github.io/lihaozhe-portfolio/'
+baseURL = 'https://lihaozhe013.github.io/lihaozhe-website/'
 # 网站语言代码
 languageCode = 'en-us'
 # 主题名称
