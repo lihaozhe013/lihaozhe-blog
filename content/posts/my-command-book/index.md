@@ -5,7 +5,7 @@ title = 'MY COMMAND BOOK'
 +++
 
 ### Git Clear Local Branches
-Git Clear All Local Branches Except for Current Branche
+Clear all local branches except for the current branche
 ```bash
 git branch | grep -v "$(git symbolic-ref --short HEAD)" | xargs git branch -D && git tag -l | xargs git tag -d
 ```
@@ -31,6 +31,7 @@ New-Item -ItemType SymbolicLink -Path "C:\link\myshortcut" -Target "C:\original\
 Suppose you want to create a symbolic link from:
 
 **Target**: `C:\Projects\RealFolder`
+<br>
 **Link**: `C:\Links\ShortcutToProject`
 
 ```powershell

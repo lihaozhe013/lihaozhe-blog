@@ -16,6 +16,12 @@ body {
     font-family: 'Source Serif 4', 'Open Sans', 'Roboto', sans-serif;
 }
 
+.navbar,
+.wrapper {
+    max-width: none;
+    width: 80%;
+}
+
 :root {
     /* 浅色模式变量 */
     --btn-bg: #f8f9fa;
