@@ -22,6 +22,17 @@ body {
     width: 80%;
 }
 
+pre > code {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+main {
+    width: 90%;
+    margin-left: 5%;
+}
+
 :root {
     /* 浅色模式变量 */
     --btn-bg: #f8f9fa;
