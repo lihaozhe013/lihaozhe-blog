@@ -5,13 +5,7 @@ title = 'About Me'
 +++
 
 # About Me
-
 Hello! I'm Haozhe (李 昊喆), a third-year computer engineering student at University of Toronto.
-
-## Resume
-[classic-resume.pdf](/lihaozhe-website/documents/resume.pdf)
-<br>
-[modern-resume.pdf](/lihaozhe-website/documents/modern-resume.pdf)
 
 ## My Interests
 - Movies
