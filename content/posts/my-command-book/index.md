@@ -1,7 +1,7 @@
 +++
 date = '2022-09-01T00:00:00-00:00'
 draft = false
-title = 'MY COMMAND BOOK'
+title = 'My Command Book'
 +++
 
 ### Git Clear Local Branches
@@ -26,7 +26,6 @@ git merge --no-ff feature-branch
 New-Item -ItemType SymbolicLink -Path "C:\link\myshortcut" -Target "C:\original\myfolder"
 ```
 
-
 **Example: Link a folder**
 Suppose you want to create a symbolic link from:
 
@@ -37,6 +36,5 @@ Suppose you want to create a symbolic link from:
 ```powershell
 New-Item -ItemType SymbolicLink -Path "C:\Links\ShortcutToProject" -Target "C:\Projects\RealFolder"
 ```
-
 
 <br>
