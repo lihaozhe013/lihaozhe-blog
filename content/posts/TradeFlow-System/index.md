@@ -47,8 +47,8 @@ Can be enabled in appConfig.json
 ```
 <br>
 
-#### Log
-Can be enabled in appConfig.json
+#### Role Based Access Control & App Log
+RBAC is automatically enabled when JWT Auth is activated, and the App Log (not Nginx's Access Log) records the username and operation ID for all database write operations (all POST interface operations).
 
 
 ## Tech Stack

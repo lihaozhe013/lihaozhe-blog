@@ -8,6 +8,7 @@ title = 'StreamFile Server: Personal Open Source Project'
 [https://github.com/lihaozhe013/streamfile-server-go](https://github.com/lihaozhe013/streamfile-server-go)
 
 ## Screenshots
+
 ![1.png](./1.png)
 
 ![2.png](./2.png)
@@ -63,3 +64,54 @@ Can be enabled in config.yaml.
 ## License
 
 MIT License.
+
+## Example Config File
+```yaml
+server:
+  host: "0.0.0.0"
+  port: 8000
+  readTimeout: 30s
+  writeTimeout: 30s
+
+storage:
+  uploadDir: "./files"
+  incomingDir: "./files/incoming"
+  privateDir: "./files/private-files"
+  maxUploadSize: 10737418240  # 10GB
+
+security:
+  allowedExtensions:
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+    - ".gif"
+    - ".pdf"
+    - ".md"
+    - ".txt"
+    - ".html"
+    - ".css"
+    - ".js"
+    - ".zip"
+    - ".tar"
+    - ".gz"
+    - ".7z"
+    - ".svg"
+    - ".mp4"
+    - ".mov"
+    - ".mp3"
+    - ".docx"
+    - ".xlsx"
+    - ".pptx"
+    - ".rtf"
+    - ".db"
+  blockedPaths:
+    - "incoming"
+    - "private-files"
+
+logging:
+  enabled: true        # Log switch. If set to false, logging is completely disabled.
+  level: "info"        # Log level: debug, info, warn, error
+  format: "json"       # Log format: json, text
+  toFile: false        # Whether output to a file instead of the console
+  logDir: "./logs"     # Log file directory (effective when `toFile` is true)
+```
