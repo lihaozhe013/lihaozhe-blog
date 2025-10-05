@@ -1,7 +1,7 @@
 +++
 date = '2025-04-02T00:00:00-00:00'
 draft = false
-title = 'GIS Route Optimization Application - ECE297 Course Project'
+title = 'GIS Route Optimization Application'
 +++
 
 This is one of my second year course project. The name of this GIS software is **Delivery Duo**, which means a good helper of delivery drivers.

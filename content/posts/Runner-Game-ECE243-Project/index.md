@@ -1,8 +1,10 @@
 +++
 date = '2025-04-03T00:00:00-00:00'
 draft = false
-title = 'Runner Game - ECE243 Course Project'
+title = 'Runner Game'
 +++
+
+This is my ECE243 course project.
 
 ## GitHub
 [https://github.com/lihaozhe013/ece243_runner_game](https://github.com/lihaozhe013/ece243_runner_game)

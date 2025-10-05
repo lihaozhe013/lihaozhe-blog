@@ -1,7 +1,7 @@
 +++
 date = '2025-09-13T00:00:00-00:00'
 draft = false
-title = 'TradeFlow System: Personal Open Source Project'
+title = 'TradeFlow System'
 +++
 
 ## [GitHub](https://github.com/lihaozhe013/myf-tradeflow-core)
