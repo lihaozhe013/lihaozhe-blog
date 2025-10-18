@@ -7,7 +7,7 @@ title = 'My Command Book'
 ### Git Clear Local Branches
 Clear all local branches except for the current branche
 ```bash
-git branch | grep -v "$(git symbolic-ref --short HEAD)" | xargs git branch -D && git tag -l | xargs git tag -d
+git branch | grep -v "$(git symbolic-ref --short HEAD)" | xargs git branch -D
 ```
 
 <br>
