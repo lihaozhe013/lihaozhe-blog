@@ -7,6 +7,12 @@ title = 'Docker Notebook'
 ## Install Docker Tutorial
 [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
 
+## Build Dockerfile
+```bash
+docker build -t my-app:1.0 .
+```
+Name of the image is `my-app`, tag is `1.0`
+
 ## List Images
 ```bash
 docker images
