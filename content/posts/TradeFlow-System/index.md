@@ -27,400 +27,304 @@ title = 'TradeFlow System'
 
 ![7.png](./7.png)
 
-## Features
-### Language Support
+## Language Support
 English, Simplified Chinese, Korean
 
-<br>
+## Key Features
 
-### Project Specifications
-- TypeScript + ESM for both backend and frontend, strictly use typescript path aliases 
-- Use ESBuild for backend compiling and bundling, but since it contains native libraries and libraries adhering to the CommonJS standard, node_modules is not bundled; Final backend artifact will be a single server.js file + node_modules
-- Use Vite for frontend dev and build
-- Auto reload (watch and rebuild) is enabled for both frontend and backend dev mode
-
-<br>
-
-### JWT Auth
-Can be enabled in appConfig.json
-
-**Example**
-```json
-"auth": {
-    "enabled": true,
-    "tokenExpiresInHours": 12,
-    "loginRateLimit": {
-      "windowMinutes": 5,
-      "maxAttempts": 20
-    },
-    "allowExportsForReader": true
-}
-```
-<br>
-
-### Role Based Access Control & App Log
-RBAC is automatically enabled when JWT Auth is activated, and the App Log (not Nginx's Access Log) records the username and operation ID for all database write operations (all POST interface operations).
-
+- **Inventory Management**: Track inventory levels, inbound and outbound operations
+- **Product Management**: Manage product information and pricing strategies
+- **Financial Tracking**: Monitor accounts payable and accounts receivable
+- **Sales Analysis**: Generate reports and analyze sales data
+- **Multi-language Support**: Supports English, Korean, and Chinese
+- **Data Export**: Supports data export in Excel format
+- **JWT Authentication**: Stateless authentication system
+- **Role Based Access Control**: Can assign **Editor** and **Viewer** to each user
 
 ## Tech Stack
-### Backend
-- TypeScript
-- Node.js
-- SQLite
-<br>
 
-### Frontend
-- TypeScript
-- Vite
-- React
-- React Router 
-- React i18next
-- AntD
-<br>
+- **Frontend**: React 19, Vite, Ant Design, TypeScript
+- **Backend**: Node.js, Express, SQLite3, TypeScript
+- **Authentication**: JWT stateless authentication
+- **Styling**: CSS3, Ant Design component library
+- **Logging**: Winston logging system
+- **Precise Calculations**: Decimal.js for precise numerical calculations
 
-### DevOps
-- Docker
-- GitHub Actions (not yet been open-sourced)
+## Backend Architecture Overview
 
-### Deployment
-- AlmaLinux
-- Ubuntu LTS
-- Docker
-- Nginx
-- PM2
+![](./Architecture.png)
 
-Successfully deployed on AWS Ubuntu LTS and AlmaLinux, using PM2 for concurrent requests handling, and Nginx Docker as a reverse proxy server. 
+## Demo
 
-Starting from version v0.3.0, a Docker deployment solution has been adopted, both TradeFlow System and Nginx are deployed in Docker.
+This is the detailed page for my demo link:
+[My Demo](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/)
 
-## License
+![1.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/1.png)
 
-MIT License.
+![2.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/2.png)
+
+![3.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/3.png)
+
+![4.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/4.png)
+
+![5.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/5.png)
+
+![6.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/6.png)
+
+![7.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/7.png)
 
 
-## Example Config Files
-**appConfig.json**
-```json
-{
-  "paymentMethods": {
-    "list": [
-      "Cash",
-      "E-Transfer",
-      "Cheque",
-      "Banker's acceptance",
-      "Other"
-    ],
-    "default": "E-Transfer",
-    "config": {
-      "cash": { "label": "Cash", "code": "CASH" },
-      "bank_transfer": { "label": "E-Transfer", "code": "BANK_TRANSFER" },
-      "check": { "label": "Cheque", "code": "CHECK" },
-      "bank_acceptance": { "label": "Banker's acceptance", "code": "BANK_ACCEPTANCE" },
-      "other": { "label": "Other", "code": "OTHER" }
-    }
-  },
-  "productCategories": {
-    "list": [
-        "category 1",
-        "category 2",
-        "category 3",
-        "Other"
-    ],
-    "default": "Other"
-  },
-  "auth": {
-    "enabled": true,
-    "tokenExpiresInHours": 12,
-    "loginRateLimit": {
-      "windowMinutes": 5,
-      "maxAttempts": 20
-    },
-    "allowExportsForReader": true
-  },
-  "server": {
-    "httpPort": 8000
-  },
-  "frontend": {
-    "hostByBackend": true,
-    "distPath": "./frontend/dist",
-    "fallbackToIndex": true
-  }
-}
+## Database Schema (Backend)
+
+> SQLite doesn’t support **Date**, so we use TEXT instead…
+
+### PARTNERS
+
+| Column  Name | Data Type | Key    | Nullable | Default |
+| ------------ | --------- | ------ | -------- | ------- |
+| code         | TEXT      | Unique | No       | NULL    |
+| short_name   | TEXT      | PK     | No       | NULL    |
+| full_name    | TEXT      |        | No       | NULL    |
+| type         | INTEGER   |        | No       | NULL    |
+
+### PRODUCTS 
+
+| Column  Name  | Data Type | Key    | Nullable | Default |
+| ------------- | --------- | ------ | -------- | ------- |
+| code          | TEXT      | Unique | No       | NULL    |
+| category      | TEXT      |        | No       | NULL    |
+| product_model | TEXT      |        | No       | NULL    |
+| remark        | TEXT      |        | No       | NULL    |
+
+### PRODUCT PRICE
+
+| Column  Name   | Data Type | Key        | Nullable | Default           |
+| -------------- | --------- | ---------- | -------- | ----------------- |
+| id             | INTEGER   | UNIQUE, PK | No       | AI                |
+| partner_code   | TEXT      | FK         | No       | NULL              |
+| product_code   | TEXT      | FK         | No       | NULL              |
+| effective_date | TEXT      |            | No       | CURRENT_TIMESTAMP |
+| unit_price     | REAL      |            | No       | NULL              |
+
+###  INBOUND RECORDS
+
+| Column  Name   | Data Type | Key        | Nullable | Default           |
+| -------------- | --------- | ---------- | -------- | ----------------- |
+| id             | INTEGER   | UNIQUE, PK | No       | AI                |
+| supplier_code  | TEXT      | FK         | No       | NULL              |
+| product_code   | TEXT      | FK         | No       | NULL              |
+| quantity       | INTEGER   |            | No       | 0                 |
+| unit_price     | REAL      |            | No       | 0                 |
+| total_price    | REAL      |            | No       | 0                 |
+| inbound_date   | TEXT      |            | No       | CURRENT_TIMESTAMP |
+| invoice_date   | TEXT      |            | Yes      | NULL              |
+| invoice_number | TEXT      |            | Yes      | NULL              |
+| receipt_number | TEXT      |            | Yes      | NULL              |
+| order_number   | TEXT      |            | Yes      | NULL              |
+| remark         | TEXT      |            | Yes      | NULL              |
+
+### OUTBOUND RECORDS
+
+| Column  Name   | Data Type | Key        | Nullable | Default           |
+| -------------- | --------- | ---------- | -------- | ----------------- |
+| id             | INTEGER   | UNIQUE, PK | No       | AI                |
+| customer_code  | TEXT      | FK         | No       | NULL              |
+| product_code   | TEXT      | FK         | No       | NULL              |
+| quantity       | INTEGER   |            | No       | 0                 |
+| unit_price     | REAL      |            | No       | 0                 |
+| total_price    | REAL      |            | No       | 0                 |
+| outbound_date  | TEXT      |            | No       | CURRENT_TIMESTAMP |
+| invoice_date   | TEXT      |            | Yes      | NULL              |
+| invoice_number | TEXT      |            | Yes      | NULL              |
+| receipt_number | TEXT      |            | Yes      | NULL              |
+| order_number   | TEXT      |            | Yes      | NULL              |
+| remark         | TEXT      |            | Yes      | NULL              |
+
+### RECEIVABLE PAYMENTS
+
+| Column  Name  | Data Type | Key        | Nullable | Default           |
+| ------------- | --------- | ---------- | -------- | ----------------- |
+| id            | INTEGER   | UNIQUE, PK | No       | AI                |
+| customer_code | TEXT      | FK         | No       | NULL              |
+| amount        | REAL      |            | No       | 0                 |
+| pay_date      | TEXT      |            | No       | CURRENT_TIMESTAMP |
+| pay_method    | TEXT      |            | Yes      | NULL              |
+| remark        | TEXT      |            | Yes      | NULL              |
+
+### PAYABLE PAYMENTS
+
+| Column  Name  | Data Type | Key        | Nullable | Default           |
+| ------------- | --------- | ---------- | -------- | ----------------- |
+| id            | INTEGER   | UNIQUE, PK | No       | AI                |
+| supplier_code | TEXT      | FK         | No       | NULL              |
+| amount        | REAL      |            | No       | 0                 |
+| pay_date      | TEXT      |            | No       | CURRENT_TIMESTAMP |
+| pay_method    | TEXT      |            | Yes      | NULL              |
+| remark        | TEXT      |            | Yes      | NULL              |
+
+
+## API Overview
+
+- **Base URL**: `/api`
+- **Auth**: `POST /api/login` returns a JWT; include `Authorization: Bearer <token>` in subsequent requests.
+
+Key endpoints (high level):
+
+| Area                 | Method & Path                                                | Purpose                                                      |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Auth                 | `POST /api/login`                                            | Exchange credentials for JWT                                 |
+| Overview             | `GET /api/overview/stats`                                    | Fetch dashboard metrics                                      |
+| Overview             | `POST /api/overview/stats`                                   | Trigger metrics recomputation                                |
+| Products             | `/api/products` (GET, POST, PUT, DELETE)                     | CRUD endpoints for product catalog                           |
+| Partners             | `/api/partners` (GET, POST, PUT, DELETE)                     | CRUD endpoints for customers/suppliers                       |
+| Pricing              | `/api/product-prices` (GET, POST, PUT, DELETE)               | CRUD partner-specific product prices (also see `/current` and `/auto` helpers) |
+| Inventory Inbound    | `/api/inbound` (GET, POST, PUT, DELETE); `POST /api/inbound/batch` | Receive goods and perform batch updates                      |
+| Inventory Outbound   | `/api/outbound` (GET, POST, PUT, DELETE); `POST /api/outbound/batch` | Ship goods and perform batch updates                         |
+| Stock                | `GET /api/stock`                                             | Real-time stock summary by product                           |
+| Finance - Receivable | `/api/receivable/payments` (GET, POST, PUT, DELETE)          | Track customer payments                                      |
+| Finance - Payable    | `/api/payable/payments` (GET, POST, PUT, DELETE)             | Track supplier payments                                      |
+| Export               | `GET /api/export/:type`                                      | Export configured datasets (e.g., Excel)                     |
+
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 22+
+- npm
+- Docker (Optional)
+
+### Development (Without Docker)
+
+1.  **Clone the project**:
+
+```bash
+git clone [https://github.com/lihaozhe013/tradeflow-core.git](https://github.com/lihaozhe013/tradeflow-core.git)
+cd tradeflow-core
 ```
-<br>
 
-**exportConfig.json**
+2.  **Install dependencies**:
 
-```json
-{
-  "partners": {
-    "sheetName": "Suppliers and Customers",
-    "columns": [
-      { "label": "Code", "key": "code" },
-      { "label": "Short Name", "key": "short_name" },
-      { "label": "Full Name", "key": "full_name" },
-      { "label": "Type", "key": "type_name" },
-      { "label": "Address", "key": "address" },
-      { "label": "Contact Person", "key": "contact_person" },
-      { "label": "Contact Phone", "key": "contact_phone" }
-    ]
-  },
-  "products": {
-    "sheetName": "Product Info",
-    "columns": [
-      { "label": "Code", "key": "code" },
-      { "label": "Category", "key": "category" },
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Remark", "key": "remark" }
-    ]
-  },
-  "prices": {
-    "sheetName": "Product Prices",
-    "columns": [
-      { "label": "Partner Short Name", "key": "partner_short_name" },
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Effective Date", "key": "effective_date" },
-      { "label": "Expiry Date", "key": "expiry_date" },
-      { "label": "Unit Price", "key": "unit_price" }
-    ]
-  },
-  "inbound": {
-    "sheetName": "Inbound Records",
-    "columns": [
-      { "label": "Inbound Date", "key": "inbound_date" },
-      { "label": "Supplier Code", "key": "supplier_code" },
-      { "label": "Supplier Short Name", "key": "supplier_short_name" },
-      { "label": "Product Code", "key": "product_code" },
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Quantity", "key": "quantity" },
-      { "label": "Unit Price", "key": "unit_price" },
-      { "label": "Total Price", "key": "total_price" }
-    ]
-  },
-  "outbound": {
-    "sheetName": "Outbound Records",
-    "columns": [
-      { "label": "Outbound Date", "key": "outbound_date" },
-      { "label": "Invoice Number", "key": "invoice_number" },
-      { "label": "Customer Code", "key": "customer_code" },
-      { "label": "Customer Short Name", "key": "customer_short_name" },
-      { "label": "Product Code", "key": "product_code" },
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Quantity", "key": "quantity" },
-      { "label": "Unit Price", "key": "unit_price" },
-      { "label": "Total Price", "key": "total_price" },
-      { "label": "Order Number", "key": "order_number" }
-    ]
-  },
-  "receivable_summary": {
-    "sheetName": "Receivable Summary",
-    "columns": [
-      { "label": "Customer Code", "key": "customer_code" },
-      { "label": "Customer Short Name", "key": "customer_short_name" },
-      { "label": "Customer Full Name", "key": "customer_full_name" },
-      { "label": "Total Sales", "key": "total_sales" },
-      { "label": "Total Payments", "key": "total_payments" },
-      { "label": "Balance", "key": "balance" }
-    ]
-  },
-  "receivable_details": {
-    "sheetName": "Receivable Details",
-    "columns": [
-      { "label": "Outbound Record ID", "key": "record_id" },
-      { "label": "Customer Code", "key": "customer_code" },
-      { "label": "Customer Short Name", "key": "customer_short_name" },
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Total Price", "key": "total_price" },
-      { "label": "Outbound Date", "key": "outbound_date" },
-      { "label": "Remark", "key": "remark" }
-    ]
-  },
-  "receivable_payments": {
-    "sheetName": "Receivable Payments",
-    "columns": [
-      { "label": "Payment ID", "key": "id" },
-      { "label": "Customer Code", "key": "customer_code" },
-      { "label": "Payment Amount", "key": "amount" },
-      { "label": "Payment Date", "key": "pay_date" },
-      { "label": "Payment Method", "key": "pay_method" },
-      { "label": "Remark", "key": "remark" }
-    ]
-  },
-  "payable_summary": {
-    "sheetName": "Payable Summary",
-    "columns": [
-      { "label": "Supplier Full Name", "key": "supplier_full_name" },
-      { "label": "Total Purchases", "key": "total_purchases" },
-      { "label": "Total Payments", "key": "total_payments" },
-      { "label": "Balance", "key": "balance" }
-    ]
-  },
-  "payable_details": {
-    "sheetName": "Payable Details",
-    "columns": [
-      { "label": "Inbound Record ID", "key": "record_id" },
-      { "label": "Supplier Short Name", "key": "supplier_short_name" },
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Total Price", "key": "total_price" },
-      { "label": "Inbound Date", "key": "inbound_date" },
-      { "label": "Remark", "key": "remark" }
-    ]
-  },
-  "payable_payments": {
-    "sheetName": "Payable Payments",
-    "columns": [
-      { "label": "Payment ID", "key": "id" },
-      { "label": "Supplier Code", "key": "supplier_code" },
-      { "label": "Payment Amount", "key": "amount" },
-      { "label": "Payment Date", "key": "pay_date" },
-      { "label": "Payment Method", "key": "pay_method" },
-      { "label": "Remark", "key": "remark" }
-    ]
-  },
-  "invoice": {
-    "sheetName": "Invoice Details",
-    "columns": [
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Quantity", "key": "quantity" },
-      { "label": "Unit Price", "key": "unit_price" },
-      { "label": "Total Price", "key": "total_price" }
-    ]
-  },
-  "inbound_statement": {
-    "sheetName": "Inbound Records",
-    "columns": [
-      { "label": "Inbound Date", "key": "inbound_date" },
-      { "label": "Order Number", "key": "order_number" },
-      { "label": "Supplier Full Name", "key": "supplier_full_name" },
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Quantity", "key": "quantity" },
-      { "label": "Unit Price", "key": "unit_price" },
-      { "label": "Total Price", "key": "total_price" },
-      { "label": "Invoice Number", "key": "invoice_number" }
-    ]
-  },
-  "outbound_statement": {
-    "sheetName": "Outbound Records",
-    "columns": [
-      { "label": "Outbound Date", "key": "outbound_date" },
-      { "label": "Order Number", "key": "order_number" },
-      { "label": "Customer Full Name", "key": "customer_full_name" },
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Quantity", "key": "quantity" },
-      { "label": "Unit Price", "key": "unit_price" },
-      { "label": "Total Price", "key": "total_price" },
-      { "label": "Invoice Number", "key": "invoice_number" }
-    ]
-  },
-  "analysis_summary": {
-    "sheetName": "数据分析汇总",
-    "columns": [
-      { "label": "Analysis Item", "key": "metric_name" },
-      { "label": "Amount", "key": "amount" },
-      { "label": "Remark", "key": "remark" }
-    ]
-  },
-  "analysis_detail": {
-    "sheetName": "Detailed Analysis",
-    "columns": [
-      { "label": "Customer Code", "key": "customer_code" },
-      { "label": "Customer Name", "key": "customer_name" },
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Sales Amount", "key": "sales_amount" },
-      { "label": "Cost", "key": "cost_amount" },
-      { "label": "Profit", "key": "profit_amount" },
-      { "label": "Profit Margin (%)", "key": "profit_rate" }
-    ]
-  },
-  "analysis_customer_summary": {
-    "sheetName": "Customer Sales Summary",
-    "columns": [
-      { "label": "Customer Code", "key": "customer_code" },
-      { "label": "Customer Name", "key": "customer_name" },
-      { "label": "Sales Amount", "key": "sales_amount" },
-      { "label": "Cost", "key": "cost_amount" },
-      { "label": "Profit", "key": "profit_amount" },
-      { "label": "Profit Margin (%)", "key": "profit_rate" }
-    ]
-  },
-  "analysis_customer_detail": {
-    "sheetName": "Product Sales Detail",
-    "columns": [
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Sales Amount", "key": "sales_amount" },
-      { "label": "Cost", "key": "cost_amount" },
-      { "label": "Profit", "key": "profit_amount" },
-      { "label": "Profit Margin (%)", "key": "profit_rate" }
-    ]
-  },
-  "analysis_product_summary": {
-    "sheetName": "Product Sales Summary",
-    "columns": [
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Sales Amount", "key": "sales_amount" },
-      { "label": "Cost", "key": "cost_amount" },
-      { "label": "Profit", "key": "profit_amount" },
-      { "label": "Profit Margin (%)", "key": "profit_rate" }
-    ]
-  },
-  "analysis_product_detail": {
-    "sheetName": "Customer Sales Detail",
-    "columns": [
-      { "label": "Customer Code", "key": "customer_code" },
-      { "label": "Customer Name", "key": "customer_name" },
-      { "label": "Sales Amount", "key": "sales_amount" },
-      { "label": "Cost", "key": "cost_amount" },
-      { "label": "Profit", "key": "profit_amount" },
-      { "label": "Profit Margin (%)", "key": "profit_rate" }
-    ]
-  },
-  "analysis_detail_by_product": {
-    "sheetName": "Product Analysis",
-    "columns": [
-      { "label": "Product Model", "key": "product_model" },
-      { "label": "Sales Amount", "key": "sales_amount" },
-      { "label": "Cost", "key": "cost_amount" },
-      { "label": "Profit", "key": "profit_amount" },
-      { "label": "Profit Margin (%)", "key": "profit_rate" }
-    ]
-  },
-  "analysis_detail_by_customer": {
-    "sheetName": "Customer Analysis",
-    "columns": [
-      { "label": "Customer Code", "key": "customer_code" },
-      { "label": "Customer Name", "key": "customer_name" },
-      { "label": "Sales Amount", "key": "sales_amount" },
-      { "label": "Cost", "key": "cost_amount" },
-      { "label": "Profit", "key": "profit_amount" },
-      { "label": "Profit Margin (%)", "key": "profit_rate" }
-    ]
-  }
-}
+```bash
+npm run install:all
 ```
-<br>
 
-**about.json**
+3.  **Set up configuration**:
 
-```json
-{
-  "title": "About Us",
-  "company": {
-    "name": "Your Company Name",
-    "description": "your company description",
-    "slogan": "your slogan"
-  },
-  "system": {
-    "version": "0.1.0",
-    "releaseDate": "2025-08-04",
-    "techStack": "React 19 + Node.js + Express + SQLite3 + Ant Design",
-    "team": "Li Haozhe"
-  },
-  "contact": {
-    "email": "lihaozhe013@gmail.com",
-    "phone": "+1 437-661-7680",
-    "address": "Toronto, Ontario, Canada"
-  },
-  "lastUpdated": "2025-08-04T10:30:00.000Z"
-}
+```bash
+# Copy the example configuration files
+mkdir -p data
+cp -r config-example/* data/
+```
+
+4. **Init**:
+
+```bash
+npm run build
+```
+
+5.  **Start the development servers**:
+
+```bash
+# Start the dev server()
+npm run dev
+```
+
+### Development (With Docker)
+
+#### All in one command (build image and start image)
+
+```bash
+make build
+```
+
+#### Start
+
+```bash
+make start
+```
+
+or
+
+```bash
+docker compose up -d
+```
+
+#### Stop
+
+```bash
+make stop
+```
+
+or
+
+```bash
+docker compose stop
+```
+
+#### Use shell in docker
+
+```bash
+make sh
+```
+
+## Production Deployment
+
+First, ensure that a functional build artifact is available
+
+```bash
+npm run build
+cd dist # dist stores the complete frontend and backend build artifacts
+mkdir -p data
+cp -r ../config-example/* data/
+cd ..
+```
+
+To start the server
+
+```bash
+cd dist
+NODE_ENV=production node ./backend/server.js 
+```
+
+
+For production deployment with PM2 cluster mode:
+
+```bash
+cd dist/pm2
+./stop-pm2.sh
+./start-pm2.sh
+```
+
+This will:
+
+- Shut down the previously running process
+- Install PM2 globally (if not installed)
+- Build the frontend application
+- Start backend services with cluster mode (max instances)
+- Configure logging and auto-restart
+
+> Internal access logs have been simplified. If you require detailed access logs, I recommend using Nginx as a proxy and reviewing Nginx's logs.
+
+### Docker (Prod)
+
+To create docker image, first build the project
+
+```bash
+npm run build
+```
+
+Then
 
 ```
+docker build -t tradeflow-core:1.0 .
+```
+
+## Data Files
+
+The system uses JSON configuration files located in the `data/` directory:
+
+- `appConfig.json`: Application settings and company information
+- `exportConfig.json`: Data export templates and settings
+- `data.db`: SQLite database file
+
