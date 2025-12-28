@@ -54,26 +54,6 @@ English, Simplified Chinese, Korean
 
 ![](./Architecture.png)
 
-## Demo
-
-This is the detailed page for my demo link:
-[My Demo](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/)
-
-![1.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/1.png)
-
-![2.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/2.png)
-
-![3.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/3.png)
-
-![4.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/4.png)
-
-![5.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/5.png)
-
-![6.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/6.png)
-
-![7.png](https://lihaozhe013.github.io/lihaozhe-website/posts/tradeflow-system/7.png)
-
-
 ## Database Schema (Backend)
 
 > SQLite doesn’t support **Date**, so we use TEXT instead…
